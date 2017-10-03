@@ -68,13 +68,14 @@ public:
 
 	// TODO 1: Add your struct for map info as public for now
 	map_data hello;
-	
+	tileset tile;
 
 private:
 
 	pugi::xml_document	map_file;
 	p2SString			folder;
 	bool				map_loaded;
+	void load_fill_data();
 };
 
 #endif // __j1MAP_H__
