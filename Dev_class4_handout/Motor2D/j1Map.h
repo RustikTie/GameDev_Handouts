@@ -24,8 +24,8 @@ struct tileset {
 
 // ----------------------------------------------------
 
-enum orientation {ORTHOGONAL, ISOMETRIC, STAGGERED, HEXAGONAL };
-enum renderorder {RIGHT_DOWN, RIGHT_UP, LEFT_DOWN, LEFT_UP};
+enum orientation {orthogonal, isometric, staggered, hexagonal };
+enum renderorder {right_down, right_up, left_down, left_up};
 // TODO 1: Create a struct needed to hold the information to Map node
 struct map_data {
 	float map_version;
@@ -67,7 +67,7 @@ private:
 public:
 
 	// TODO 1: Add your struct for map info as public for now
-	map_data hello;
+	map_data map;
 	tileset tile;
 
 private:
@@ -75,7 +75,7 @@ private:
 	pugi::xml_document	map_file;
 	p2SString			folder;
 	bool				map_loaded;
-	void fill_map(pugi::xml_node &node);
+	void fill_map(pugi::xml_document &_map_file);
 };
 
 #endif // __j1MAP_H__
