@@ -59,7 +59,7 @@ public:
 	bool CleanUp();
 
 	// Load new map
-	bool Load(const char* path);
+	bool Load(const char* file_name	);
 
 private:
 
@@ -75,7 +75,7 @@ private:
 	pugi::xml_document	map_file;
 	p2SString			folder;
 	bool				map_loaded;
-	void load_fill_data();
+	void fill_map(pugi::xml_node &node);
 };
 
 #endif // __j1MAP_H__
