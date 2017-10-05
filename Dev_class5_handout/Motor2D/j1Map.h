@@ -17,7 +17,7 @@ struct MapLayer {
 };
 	// TODO 6: Short function to get the value of x,y
 
-
+// inline uint Get(int x, int y) const
 
 // ----------------------------------------------------
 struct TileSet
@@ -58,7 +58,7 @@ struct MapData
 	MapTypes			type;
 	p2List<TileSet*>	tilesets;
 	// TODO 2: Add a list/array of layers to the map!
-	p2List<MapLayer>	map_layers;
+	p2List<MapLayer*>	map_layers;
 };
 
 // ----------------------------------------------------
