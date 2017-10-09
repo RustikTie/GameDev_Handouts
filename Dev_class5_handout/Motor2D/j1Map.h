@@ -15,11 +15,11 @@ struct MapLayer {
 	uint height;
 	uint *data = nullptr;
 	uint size = 0;
-};
 	// TODO 6: Short function to get the value of x,y
-
-// inline uint Get(int x, int y) const
-
+	inline uint Get(int x, int y) const {
+		return x + y * width;
+	}
+};
 
 // ----------------------------------------------------
 struct TileSet
@@ -40,7 +40,9 @@ struct TileSet
 	int					num_tiles_height;
 	int					offset_x;
 	int					offset_y;
+
 };
+
 
 enum MapTypes
 {
@@ -88,6 +90,8 @@ public:
 
 	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint MapToWorld(int x, int y) const;
+
+
 
 private:
 
