@@ -33,16 +33,18 @@ void j1Map::Draw()
 
 	// TODO 5: Prepare the loop to draw all tilesets + Blit
 
-	uint tileset_num;
+	uint tileset_num;			
 
-	for (int i = 0; i < data.width; ++i) {
+	for (int i = 0; i < data.height; ++i) {
+		
+		for (int j = 0; j < data.width; ++j) {
 
-		for (int j = 0; j < data.height; ++j) {
-			SDL_Rect rec = data.tilesets[0]->GetTileRect();
-			 tileset_num = data.map_layers[0]->Get(i,j);
-		//	rec = data.tilesets[0]->GetTileRect(i); //Get tileset size, print &rec to print full tileset
-			App->render->Blit(data.tilesets[0]->texture,i*data.tile_width,j*data.tile_height, NULL );
-
+				SDL_Rect rec = data.tilesets[0]->GetTileRect(tileset_num);
+				//	rec = data.tilesets[0]->GetTileRect(i); //Get tileset size, print &rec to print full tileset
+				App->render->Blit(data.tilesets[0]->texture, j*data.tile_width, i*data.tile_height, &rec);
+			}
+		
+			
 		}
 	}
 
