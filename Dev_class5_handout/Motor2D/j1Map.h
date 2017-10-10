@@ -16,9 +16,9 @@ struct MapLayer {
 	uint *data = nullptr;
 	uint size = 0;
 	// TODO 6: Short function to get the value of x,y
-	inline uint Get(int x, int y) const {
-		return x + y * width;
-	}
+	inline uint Get(int x, int y) const;
+
+	~MapLayer() { delete[] data; }
 };
 
 // ----------------------------------------------------

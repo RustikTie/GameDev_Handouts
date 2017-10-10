@@ -33,17 +33,17 @@ void j1Map::Draw()
 
 	// TODO 5: Prepare the loop to draw all tilesets + Blit
 
-	uint tileset_num;			
-
-	for (int i = 0; i < data.height; ++i) {
+	for (int i = 0; i < data.width; ++i) {
 		
-		for (int j = 0; j < data.width; ++j) {
-
-				SDL_Rect rec = data.tilesets[0]->GetTileRect(tileset_num);
-				//	rec = data.tilesets[0]->GetTileRect(i); //Get tileset size, print &rec to print full tileset
-				App->render->Blit(data.tilesets[0]->texture, j*data.tile_width, i*data.tile_height, &rec);
+		for (int j = 0; j < data.height; ++j) {
+			uint id = data.map_layers[0]->data[data.map_layers[0]->Get(i, j)];
+			
+			if (id != 0) {
+				SDL_Rect rec = data.tilesets[0]->GetTileRect(id);
+				int x = MapToWorld(i, j).x;
+				int y = MapToWorld(i, j).y;
+				App->render->Blit(data.tilesets[0]->texture, x, y, &rec);
 			}
-		
 			
 		}
 	}
@@ -154,7 +154,7 @@ bool j1Map::Load(const char* file_name)
 
 	pugi::xml_node layers;
 	
-	for (layers = map_file.child("layer").child("data"); layers && ret; layers = layers.next_sibling()) 
+	for (layers = map_file.child("map").child("layer"); layers && ret; layers = layers.next_sibling("layer")) 
 	{
 
 		MapLayer* lay = new MapLayer();
@@ -350,18 +350,15 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	layer->height = node.attribute("height").as_uint();
 	layer->size = layer->width*layer->height;
 	
-	pugi::xml_node _node;
+	pugi::xml_node _node = node.child("data").child("title");
 
-	memset(layer->data, 0, layer->size);
+	layer->data = new uint[layer->size];
+	memset(layer->data, 0, sizeof(uint)*(layer->size));
 
 	for (uint i = 0; i < layer->size; ++i) {
 		
-		if (i == 0)	{
-			layer->data[i] = node.child("data").child("tile").attribute("gid").as_uint();
-		}
-
-		_node = node.child("data").child("tile").next_sibling();
 		layer->data[i] = _node.attribute("gid").as_uint();
+		_node = _node.next_sibling();
 	
 	}
 	
@@ -373,3 +370,6 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	return ret;
 }
 
+inline uint MapLayer::Get(int x, int y) const {
+	return x + y * width;
+}
