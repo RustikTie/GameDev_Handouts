@@ -44,42 +44,8 @@ void j1Map::PropagateBFS()
 		p2Queue_item<iPoint>* last = frontier.GetLast();
 		frontier.Pop(last->data);
 
-		iPoint neighbour = nullptr;
-		neighbour.x = last->data.x;
-		neighbour.y = last->data.y - 1;
-
-		if (visited.find(neighbour) == -1)
-		{
-			frontier.Push(neighbour);
-			visited.add(neighbour);
-		}
-
-		neighbour.x = last->data.x;
-		neighbour.y = last->data.y + 1;
-
-		if (visited.find(neighbour) == -1)
-		{
-			frontier.Push(neighbour);
-			visited.add(neighbour);
-		}	
-
-		neighbour.x = last->data.x -1;
-		neighbour.y = last->data.y;
-
-		if (visited.find(neighbour) == -1)
-		{
-			frontier.Push(neighbour);
-			visited.add(neighbour);
-		}
-
-		neighbour.x = last->data.x + 1;
-		neighbour.y = last->data.y;
-
-		if (visited.find(neighbour) == -1)
-		{
-			frontier.Push(neighbour);
-			visited.add(neighbour);
-		}
+		p2List<iPoint> neighbour;
+		neighbour.add(last->data.x)
 		
 	}
 	// TODO 2: For each neighbor, if not visited, add it

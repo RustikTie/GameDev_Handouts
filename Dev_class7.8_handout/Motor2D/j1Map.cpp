@@ -48,9 +48,21 @@ void j1Map::Path(int x, int y)
 {
 	path.Clear();
 	iPoint goal = WorldToMap(x, y);
-
+	iPoint curr = goal;
+	path.Insert(curr, 0);
+	int i = 0;
 	// TODO 2: Follow the breadcrumps to goal back to the origin
 	// add each step into "path" dyn array (it will then draw automatically)
+	if (visited.find(goal) != -1)
+	{
+		while (curr != breadcrumbs.start->data)
+		{
+			curr = breadcrumbs[visited.find(curr)];
+			path.Insert(curr, i);
+			++i;
+		}
+	}
+
 }
 
 void j1Map::PropagateDijkstra()
@@ -98,6 +110,7 @@ void j1Map::PropagateBFS()
 				{
 					frontier.Push(neighbors[i], 0);
 					visited.add(neighbors[i]);
+					breadcrumbs.add(curr);
 				}
 			}
 		}
