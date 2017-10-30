@@ -65,14 +65,10 @@ void j1Map::Path(int x, int y)
 
 }
 
-void j1Map::PropagateAstar(int x, int y)
+void j1Map::PropagateAstar(iPoint goal)
 {
 	iPoint curr;
-	iPoint goal;
-	goal.x = x;
-	goal.y = y;
-	iPoint distanceToGoal;
-
+	int new_cost;
 
 	if (frontier.Pop(curr))
 	{
@@ -84,8 +80,7 @@ void j1Map::PropagateAstar(int x, int y)
 
 		if (curr != goal)
 		{
-			distanceToGoal.x = goal.x - curr.x;
-			distanceToGoal.y = goal.y - curr.y;
+		
 
 			for (uint i = 0; i < 4; ++i)
 			{
@@ -96,7 +91,9 @@ void j1Map::PropagateAstar(int x, int y)
 
 				if (MovementCost(neighbors[i].x, neighbors[i].y) >= 0)
 				{
-					if (visited.find(neighbors[i]) == -1 || new_cost < cost_so_far[curr.x][curr.y] || new_distance.x < distanceToGoal.x || new_distance.y < distanceToGoal.y)
+					new_cost = neighbors[i].DistanceManhattan(goal);
+
+					if (new_cost < cost_so_far[neighbors[i].x][neighbors[i].y] || cost_so_far[neighbors[i].x][neighbors[i].y] == 0)
 					{
 						cost_so_far[neighbors[i].x][neighbors[i].y] = new_cost;
 						frontier.Push(neighbors[i], new_cost);

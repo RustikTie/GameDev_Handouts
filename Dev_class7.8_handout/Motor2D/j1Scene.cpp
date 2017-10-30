@@ -86,10 +86,10 @@ bool j1Scene::Update(float dt)
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_DOWN)
-		App->map->PropagateAstar(p.x, p.y);
+		App->map->PropagateAstar(p);
 	
 	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT)
-		App->map->PropagateAstar(p.x, p.y);
+		App->map->PropagateAstar(p);
 
 	int x, y;
 	App->input->GetMousePosition(x, y);

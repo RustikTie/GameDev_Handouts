@@ -136,7 +136,7 @@ public:
 	// Propagation style
 	void PropagateBFS();
 	void PropagateDijkstra();
-	void PropagateAstar(int x, int y);
+	void PropagateAstar(iPoint goal);
 
 private:
 
@@ -157,7 +157,7 @@ private:
 	pugi::xml_document	map_file;
 	p2SString			folder;
 	bool				map_loaded;
-
+	bool finish_ax = false;
 	/// BFS
 	p2PQueue<iPoint>	frontier;
 	p2List<iPoint>		visited;
