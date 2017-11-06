@@ -12,6 +12,7 @@
 #include "j1Scene.h"
 #include "j1Map.h"
 #include "j1Pathfinding.h"
+#include "j1PerfTimer.h"
 #include "j1App.h"
 
 // Constructor
@@ -85,7 +86,7 @@ bool j1App::Awake()
 		app_config = config.child("app");
 		title.create(app_config.child("title").child_value());
 		organization.create(app_config.child("organization").child_value());
-
+		frame_cap = config.child("renderer").child("framerate_cap").attribute("value").as_int();
 		// TODO 1: Read from config file your framerate cap
 	}
 
@@ -202,8 +203,14 @@ void j1App::FinishUpdate()
 	App->win->SetTitle(title);
 
 	// TODO 2: Use SDL_Delay to make sure you get your capped framerate
+	int delay = 33 - last_frame_ms;
+	SDL_Delay(delay);
 
-	// TODO3: Measure accurately the amount of time it SDL_Delay actually waits compared to what was expected
+	// TODO 3: Measure accurately the amount of time it SDL_Delay actually waits compared to what was expected
+	uint ms = App->ptimer.ReadMs();
+	LOG("We waited %d miliseconds and got back in %d miliseconds", delay, ms);
+
+	
 }
 
 // Call modules before each loop iteration
