@@ -93,6 +93,7 @@ private:
 	p2List<j1Module*>	modules;
 	int					argc;
 	char**				args;
+	float differential_time;
 
 	p2SString			title;
 	p2SString			organization;

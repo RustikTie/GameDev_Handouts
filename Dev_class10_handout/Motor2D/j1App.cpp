@@ -86,7 +86,7 @@ bool j1App::Awake()
 		app_config = config.child("app");
 		title.create(app_config.child("title").child_value());
 		organization.create(app_config.child("organization").child_value());
-		frame_cap = config.child("renderer").child("framerate_cap").attribute("value").as_int();
+		frame_cap = app_config.attribute("framerate_cap").as_int();
 		// TODO 1: Read from config file your framerate cap
 	}
 
@@ -171,7 +171,9 @@ void j1App::PrepareUpdate()
 	last_sec_frame_count++;
 
 	// TODO 4: Calculate the dt: differential time since last frame
+	differential_time = (1/(float)frame_cap);
 	frame_time.Start();
+	
 }
 
 // ---------------------------------------------
@@ -203,12 +205,13 @@ void j1App::FinishUpdate()
 	App->win->SetTitle(title);
 
 	// TODO 2: Use SDL_Delay to make sure you get your capped framerate
-	int delay = 33 - last_frame_ms;
+	float _ms = App->ptimer.ReadMs();
+	int delay = 1000/frame_cap - last_frame_ms;
 	SDL_Delay(delay);
 
 	// TODO 3: Measure accurately the amount of time it SDL_Delay actually waits compared to what was expected
-	uint ms = App->ptimer.ReadMs();
-	LOG("We waited %d miliseconds and got back in %d miliseconds", delay, ms);
+	float ms = App->ptimer.ReadMs() - _ms;
+	LOG("We waited %d miliseconds and got back in %f miliseconds", delay, ms);
 
 	
 }
@@ -254,7 +257,8 @@ bool j1App::DoUpdate()
 		// TODO 5: send dt as an argument to all updates
 		// you will need to update module parent class
 		// and all modules that use update
-		ret = item->data->Update();
+		ret = item->data->Update(differential_time);
+		
 	}
 
 	return ret;
