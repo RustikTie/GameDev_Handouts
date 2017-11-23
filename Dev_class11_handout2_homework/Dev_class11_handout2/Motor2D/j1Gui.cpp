@@ -6,6 +6,7 @@
 #include "j1Fonts.h"
 #include "j1Input.h"
 #include "j1Gui.h"
+#include "Element.h"
 
 j1Gui::j1Gui() : j1Module()
 {
@@ -63,3 +64,22 @@ const SDL_Texture* j1Gui::GetAtlas() const
 
 // class Gui ---------------------------------------------------
 
+void j1Gui::CreateElement(ElementType type, int x, int y, int height, int width)
+{
+	Element new_element;
+	new_element.type = type;
+	new_element.rect.x = x;
+	new_element.rect.y = y;
+	new_element.rect.w = width;
+	new_element.rect.h = height;
+
+	elements.add(&new_element);
+}
+void j1Gui::DeleteElement(Element* elem)
+{
+
+}
+void j1Gui::BlitElements(Element* elem)
+{
+
+}
