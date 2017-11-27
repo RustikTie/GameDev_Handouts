@@ -3,11 +3,12 @@
 
 #include "j1Module.h"
 #include "p2List.h"
-#include "Element.h"
 
 #define CURSOR_WIDTH 2
 
 // TODO 1: Create your structure of classes
+class Element;
+struct SDL_Texture;
 
 enum ElementType
 {
@@ -16,7 +17,10 @@ enum ElementType
 	BUTTON,
 	TEXT_BOX,
 	BACKGROUND,
+	NO_TYPE,
 };
+
+
 // ---------------------------------------------------
 class j1Gui : public j1Module
 {
@@ -44,7 +48,7 @@ public:
 
 	// TODO 2: Create the factory methods
 	// Gui creation functions
-	void CreateElement(ElementType type, int x, int y, int height, int width);
+	Element* CreateElement(ElementType type, int x, int y, int height, int width);
 	void DeleteElement(Element* elem);
 	void BlitElements(Element* elem);
 	const SDL_Texture* GetAtlas() const;

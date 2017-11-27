@@ -3,6 +3,8 @@
 
 #include "Element.h"
 
+struct Animation;
+
 class Background : public Element
 {
 public:
