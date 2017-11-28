@@ -10,14 +10,16 @@
 class Element : public j1Gui
 {
 public:
-	Element();
+	Element(int x, int y, ElementType type);
 	~Element();
+
+	virtual void Draw() {}
 	
 public:
 
-	SDL_Rect rect;
 	iPoint pos;
 	ElementType type;
+
 
 };
 

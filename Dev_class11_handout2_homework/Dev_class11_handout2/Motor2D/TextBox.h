@@ -8,17 +8,18 @@
 class TextBox : public Element
 {
 public:
-	TextBox();
+	TextBox(int x, int y, ElementType type, SDL_Rect rec, const char* text);
 	~TextBox();
 
 	void InsertLetter(char letter, p2SString* text);
 	void DeleteLetter(p2SString* text);
 	void OnClick();
+	void Draw();
 
 private: 
 	bool isClicked = false;
-	_TTF_Font* letters = nullptr;
-	p2SString text;
+	SDL_Rect rec;
+	const char* text;
 };
 
 #endif

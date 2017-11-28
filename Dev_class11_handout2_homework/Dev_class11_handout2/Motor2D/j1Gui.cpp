@@ -7,6 +7,11 @@
 #include "j1Input.h"
 #include "j1Gui.h"
 #include "Element.h"
+#include "Text.h"
+#include "Image.h"
+#include "Background.h"
+#include "Button.h"
+#include "TextBox.h"
 
 j1Gui::j1Gui() : j1Module()
 {
@@ -40,19 +45,21 @@ bool j1Gui::Start()
 // Update all guis
 bool j1Gui::PreUpdate()
 {
-	for (int i = 0; i < MAX_ELEMENTS; ++i)
-	{
-		if (elements[i]->type == ElementType::IMAGE)
-		{
-			App->render->Blit(atlas, elements[i]->rect.x, elements[0]->rect.y, &elements[0]->rect, NULL);
-		}
-	}
+
+
 	return true;
 }
 
 // Called after all Updates
 bool j1Gui::PostUpdate()
 {
+	p2List_item<Element*>* list;
+
+	for (list = elements.start; list; list = list->next)
+	{
+		//list->data->Draw();
+	}
+
 	return true;
 }
 
@@ -60,13 +67,13 @@ bool j1Gui::PostUpdate()
 bool j1Gui::CleanUp()
 {
 	LOG("Freeing GUI");
-	p2List_item<Element*>* item;
+	/*p2List_item<Element>* item;
 	item = elements.start;
 	while (item != NULL)
 	{
 		RELEASE(item->data);
 		item = item->next;
-	}
+	}*/
 
 	return true;
 }
@@ -79,19 +86,26 @@ const SDL_Texture* j1Gui::GetAtlas() const
 
 // class Gui ---------------------------------------------------
 
-Element* j1Gui::CreateElement(ElementType type, int x, int y, int height, int width)
+Element* j1Gui::CreateImage(int x, int y, ElementType type, SDL_Rect rec)
 {
-	Element* new_element = new Element;
-	new_element[0].type = type;
-	new_element[0].rect.x = x;
-	new_element[0].rect.y = y;
-	new_element[0].rect.w = width;
-	new_element[0].rect.h = height;
+	Element* new_element;
+	new_element = new Image(x, y, type, rec);
 
 	elements.add(new_element);
 
 	return new_element;
 }
+
+Element* j1Gui::CreateText(int x, int y, ElementType type, const char* text)
+{
+	Element* new_element;
+	new_element = new Text(x, y, type, text);
+
+	elements.add(new_element);
+
+	return new_element;
+}
+
 void j1Gui::DeleteElement(Element* elem)
 {
 

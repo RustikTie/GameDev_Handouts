@@ -6,8 +6,13 @@
 class Image : public Element
 {
 public:
-	Image();
+	Image(int x, int y, ElementType type, SDL_Rect rec);
 	~Image();
+	void Draw();
+
+private:
+	SDL_Rect rec;
+
 };
 
 #endif // !__IMAGE_H__

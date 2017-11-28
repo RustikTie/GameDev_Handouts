@@ -7,12 +7,14 @@
 class Text : public Element
 {
 public:
-	Text();
+	Text(int x, int y, ElementType type, const char* text);
 	~Text();
-private:
 
-	_TTF_Font* letter = nullptr;
-	p2SString text;
+	void Draw();
+
+private:
+	
+	const char* text;
 
 };
 

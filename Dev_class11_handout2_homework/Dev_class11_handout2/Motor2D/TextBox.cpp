@@ -2,8 +2,10 @@
 
 
 
-TextBox::TextBox()
+TextBox::TextBox(int x, int y, ElementType type, SDL_Rect rec, const char* text) : Element (x,y,type)
 {
+	this->rec = rec;
+	this->text = text;
 }
 
 
@@ -21,6 +23,10 @@ void TextBox::DeleteLetter(p2SString* text)
 }
 
 void TextBox::OnClick()
+{
+
+}
+void TextBox::Draw()
 {
 
 }

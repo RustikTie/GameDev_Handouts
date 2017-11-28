@@ -3,6 +3,7 @@
 
 #include "j1Module.h"
 #include "p2List.h"
+#include "j1Fonts.h"
 
 #define CURSOR_WIDTH 2
 
@@ -48,7 +49,8 @@ public:
 
 	// TODO 2: Create the factory methods
 	// Gui creation functions
-	Element* CreateElement(ElementType type, int x, int y, int height, int width);
+	Element* CreateImage(int x, int y, ElementType type, SDL_Rect rec);
+	Element* CreateText(int x, int y, ElementType type, const char* text);
 	void DeleteElement(Element* elem);
 	void BlitElements(Element* elem);
 	const SDL_Texture* GetAtlas() const;

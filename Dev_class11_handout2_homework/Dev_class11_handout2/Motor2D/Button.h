@@ -8,16 +8,17 @@
 class Button : public Element
 {
 public:
-	Button();
+	Button(int x, int y, ElementType type, SDL_Rect rec, const char* text);
 	~Button();
 
 	void OnClick();
+	void Draw();
 
 private: 
-	bool isClicked = false;
-	_TTF_Font* font = nullptr;
-	p2SString text;
 	
+	bool isClicked = false;
+	SDL_Rect rec;
+	const char* text;
 };
 
 #endif // !__BUTTON_H__

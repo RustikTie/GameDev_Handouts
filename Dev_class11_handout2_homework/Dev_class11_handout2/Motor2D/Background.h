@@ -3,17 +3,17 @@
 
 #include "Element.h"
 
-struct Animation;
 
 class Background : public Element
 {
 public:
-	Background();
+	Background(int x, int y, ElementType type, SDL_Rect rec);
 	~Background();
+	void Draw();
 
 public:
 	bool isAnimated = false;
-	Animation* animation = nullptr;
+	SDL_Rect rec;
 };
 
 #endif // !__BACKGROUND_H__
