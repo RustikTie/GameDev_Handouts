@@ -52,6 +52,7 @@ public:
 	Element* CreateImage(int x, int y, ElementType type, SDL_Rect rec, SDL_Texture* tex);
 	Element* CreateText(int x, int y, ElementType type, const char* text);
 	Element* CreateBackground(int x, int y, ElementType type, SDL_Rect rec, SDL_Texture* tex);
+	Element* CreateButton(int x, int y, ElementType type, SDL_Rect rec, const char* text, SDL_Texture* tex, _TTF_Font* font);
 
 	void DeleteElement(Element* elem);
 	void BlitElements(Element* elem);
@@ -59,7 +60,8 @@ public:
 	SDL_Texture* GetAtlas() const;
 	SDL_Texture* GetBackground() const;
 	SDL_Texture* WoWLogo;
-
+	_TTF_Font* firstFont;
+	SDL_Texture* RedButton;
 
 private:
 

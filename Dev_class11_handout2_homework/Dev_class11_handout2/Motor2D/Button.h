@@ -8,7 +8,7 @@
 class Button : public Element
 {
 public:
-	Button(int x, int y, ElementType type, SDL_Rect rec, const char* text, SDL_Texture* tex);
+	Button(int x, int y, ElementType type, SDL_Rect rec, const char* text, SDL_Texture* tex, _TTF_Font* font);
 	~Button();
 
 	void OnClick();
@@ -22,7 +22,7 @@ private:
 	SDL_Rect rec;
 	const char* text;
 	SDL_Texture* tex;
-
+	_TTF_Font* font;
 };
 
 #endif // !__BUTTON_H__

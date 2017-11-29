@@ -46,7 +46,7 @@ bool j1Scene::Start()
 	// TODO 3: Create the banner (rect {485, 829, 328, 103}) and the text "Hello World"
 	App->gui->CreateBackground(0, 0, ElementType::BACKGROUND, { 0,0,1024,768 }, App->gui->GetBackground());
 	App->gui->CreateImage(10, 40, ElementType::IMAGE, { 0, 0, 512, 256 }, App->gui->WoWLogo);
-
+	App->gui->CreateButton(30, 50, ElementType::BUTTON, { 0,0,128,32 }, "Hello World", App->gui->RedButton, App->gui->firstFont);
 //	App->gui->CreateImage(ElementType::IMAGE, { 485, 829, 328, 103 }, 350, 200);
 
 	return true;

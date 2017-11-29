@@ -41,7 +41,8 @@ bool j1Gui::Start()
 	background = App->tex->Load("gui/login_background.png");
 	WoWLogo = App->tex->Load("gui/Glues-Logo.png");
 	BlizzLogo = App->tex->Load("gui/Glues-BlizzardLogo.png");
-
+	firstFont = App->font->Load("fonts/ARIALN.ttf");
+	RedButton = App->tex->Load("gui/UI-DialogBox-Button-Down.png");
 	return true;
 }
 
@@ -122,6 +123,17 @@ Element* j1Gui::CreateBackground(int x, int y, ElementType type, SDL_Rect rec, S
 
 	return new_element;
 }
+
+Element* j1Gui::CreateButton(int x, int y, ElementType type, SDL_Rect rec, const char* text, SDL_Texture* tex, _TTF_Font* font)
+{
+	Element* new_element;
+	new_element = new Button(x, y, type, rec, text, tex, font);
+
+	elements.add(new_element);
+
+	return new_element;
+}
+
 void j1Gui::DeleteElement(Element* elem)
 {
 
