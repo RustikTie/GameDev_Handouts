@@ -7,13 +7,15 @@
 class Background : public Element
 {
 public:
-	Background(int x, int y, ElementType type, SDL_Rect rec);
+	Background(int x, int y, ElementType type, SDL_Rect rec, SDL_Texture* tex);
 	~Background();
 	void Draw();
 
 public:
 	bool isAnimated = false;
 	SDL_Rect rec;
+	SDL_Texture* tex;
+
 };
 
 #endif // !__BACKGROUND_H__

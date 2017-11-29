@@ -49,15 +49,23 @@ public:
 
 	// TODO 2: Create the factory methods
 	// Gui creation functions
-	Element* CreateImage(int x, int y, ElementType type, SDL_Rect rec);
+	Element* CreateImage(int x, int y, ElementType type, SDL_Rect rec, SDL_Texture* tex);
 	Element* CreateText(int x, int y, ElementType type, const char* text);
+	Element* CreateBackground(int x, int y, ElementType type, SDL_Rect rec, SDL_Texture* tex);
+
 	void DeleteElement(Element* elem);
 	void BlitElements(Element* elem);
-	const SDL_Texture* GetAtlas() const;
+
+	SDL_Texture* GetAtlas() const;
+	SDL_Texture* GetBackground() const;
+	SDL_Texture* WoWLogo;
+
 
 private:
 
-	SDL_Texture* atlas;
+	SDL_Texture* atlas; 
+	SDL_Texture* background;
+	SDL_Texture* BlizzLogo;
 	p2SString atlas_file_name;
 	p2List<Element*> elements;
 

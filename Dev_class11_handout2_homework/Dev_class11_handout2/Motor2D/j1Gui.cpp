@@ -38,6 +38,9 @@ bool j1Gui::Awake(pugi::xml_node& conf)
 bool j1Gui::Start()
 {
 	atlas = App->tex->Load(atlas_file_name.GetString());
+	background = App->tex->Load("gui/login_background.png");
+	WoWLogo = App->tex->Load("gui/Glues-Logo.png");
+	BlizzLogo = App->tex->Load("gui/Glues-BlizzardLogo.png");
 
 	return true;
 }
@@ -57,7 +60,7 @@ bool j1Gui::PostUpdate()
 
 	for (list = elements.start; list; list = list->next)
 	{
-		//list->data->Draw();
+		list->data->Draw();
 	}
 
 	return true;
@@ -67,29 +70,33 @@ bool j1Gui::PostUpdate()
 bool j1Gui::CleanUp()
 {
 	LOG("Freeing GUI");
-	/*p2List_item<Element>* item;
+	p2List_item<Element*>* item;
 	item = elements.start;
 	while (item != NULL)
 	{
 		RELEASE(item->data);
 		item = item->next;
-	}*/
+	}
 
 	return true;
 }
 
 // const getter for atlas
-const SDL_Texture* j1Gui::GetAtlas() const
+SDL_Texture* j1Gui::GetAtlas() const
 {
 	return atlas;
+}
+SDL_Texture* j1Gui::GetBackground() const
+{
+	return background;
 }
 
 // class Gui ---------------------------------------------------
 
-Element* j1Gui::CreateImage(int x, int y, ElementType type, SDL_Rect rec)
+Element* j1Gui::CreateImage(int x, int y, ElementType type, SDL_Rect rec, SDL_Texture* tex)
 {
 	Element* new_element;
-	new_element = new Image(x, y, type, rec);
+	new_element = new Image(x, y, type, rec, tex);
 
 	elements.add(new_element);
 
@@ -106,6 +113,15 @@ Element* j1Gui::CreateText(int x, int y, ElementType type, const char* text)
 	return new_element;
 }
 
+Element* j1Gui::CreateBackground(int x, int y, ElementType type, SDL_Rect rec, SDL_Texture* tex)
+{
+	Element* new_element;
+	new_element = new Background(x, y, type, rec, tex);
+
+	elements.add(new_element);
+
+	return new_element;
+}
 void j1Gui::DeleteElement(Element* elem)
 {
 

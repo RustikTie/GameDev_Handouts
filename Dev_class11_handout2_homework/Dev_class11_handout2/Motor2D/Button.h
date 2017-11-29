@@ -8,10 +8,12 @@
 class Button : public Element
 {
 public:
-	Button(int x, int y, ElementType type, SDL_Rect rec, const char* text);
+	Button(int x, int y, ElementType type, SDL_Rect rec, const char* text, SDL_Texture* tex);
 	~Button();
 
 	void OnClick();
+	void OnEntry(){}
+	void OnExit(){}
 	void Draw();
 
 private: 
@@ -19,6 +21,8 @@ private:
 	bool isClicked = false;
 	SDL_Rect rec;
 	const char* text;
+	SDL_Texture* tex;
+
 };
 
 #endif // !__BUTTON_H__

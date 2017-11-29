@@ -8,7 +8,7 @@
 class TextBox : public Element
 {
 public:
-	TextBox(int x, int y, ElementType type, SDL_Rect rec, const char* text);
+	TextBox(int x, int y, ElementType type, SDL_Rect rec, const char* text, SDL_Texture* tex);
 	~TextBox();
 
 	void InsertLetter(char letter, p2SString* text);
@@ -20,6 +20,8 @@ private:
 	bool isClicked = false;
 	SDL_Rect rec;
 	const char* text;
+	SDL_Texture* tex;
+
 };
 
 #endif

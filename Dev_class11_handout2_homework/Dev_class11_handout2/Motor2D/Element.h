@@ -20,7 +20,6 @@ public:
 	iPoint pos;
 	ElementType type;
 
-
 };
 
 #endif // !__ELEMENT_H__

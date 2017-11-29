@@ -6,12 +6,13 @@
 class Image : public Element
 {
 public:
-	Image(int x, int y, ElementType type, SDL_Rect rec);
+	Image(int x, int y, ElementType type, SDL_Rect rec, SDL_Texture* tex);
 	~Image();
 	void Draw();
 
 private:
 	SDL_Rect rec;
+	SDL_Texture* tex;
 
 };
 
