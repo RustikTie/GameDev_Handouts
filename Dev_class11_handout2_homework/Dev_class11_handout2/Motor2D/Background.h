@@ -14,7 +14,7 @@ public:
 public:
 	bool isAnimated = false;
 	SDL_Rect rec;
-	SDL_Texture* tex;
+	SDL_Texture* tex = nullptr;
 
 };
 

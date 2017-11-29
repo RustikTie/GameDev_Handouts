@@ -20,9 +20,9 @@ private:
 	
 	bool isClicked = false;
 	SDL_Rect rec;
-	const char* text;
-	SDL_Texture* tex;
-	_TTF_Font* font;
+	const char* text = nullptr;
+	SDL_Texture* tex = nullptr;
+	_TTF_Font* font = nullptr;
 };
 
 #endif // !__BUTTON_H__

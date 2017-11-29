@@ -59,15 +59,15 @@ public:
 
 	SDL_Texture* GetAtlas() const;
 	SDL_Texture* GetBackground() const;
-	SDL_Texture* WoWLogo;
-	_TTF_Font* firstFont;
-	SDL_Texture* RedButton;
+	SDL_Texture* WoWLogo = nullptr;
+	_TTF_Font* firstFont = nullptr;
+	SDL_Texture* RedButton = nullptr;
 
 private:
 
-	SDL_Texture* atlas; 
-	SDL_Texture* background;
-	SDL_Texture* BlizzLogo;
+	SDL_Texture* atlas = nullptr; 
+	SDL_Texture* background = nullptr;
+	SDL_Texture* BlizzLogo = nullptr;
 	p2SString atlas_file_name;
 	p2List<Element*> elements;
 

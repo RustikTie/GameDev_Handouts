@@ -19,8 +19,8 @@ public:
 private: 
 	bool isClicked = false;
 	SDL_Rect rec;
-	const char* text;
-	SDL_Texture* tex;
+	const char* text = nullptr;
+	SDL_Texture* tex = nullptr;
 
 };
 
