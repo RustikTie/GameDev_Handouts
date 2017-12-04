@@ -18,6 +18,7 @@ enum ElementType
 	BUTTON,
 	TEXT_BOX,
 	BACKGROUND,
+	WINDOW,
 	NO_TYPE,
 };
 
@@ -53,6 +54,7 @@ public:
 	Element* CreateText(int x, int y, ElementType type, const char* text);
 	Element* CreateBackground(int x, int y, ElementType type, SDL_Rect rec, SDL_Texture* tex);
 	Element* CreateButton(int x, int y, ElementType type, SDL_Rect rec, const char* text, SDL_Texture* tex, _TTF_Font* font);
+	Element* Create_Window(int x, int y, ElementType type, SDL_Rect rec);
 
 	void DeleteElement(Element* elem);
 	void BlitElements(Element* elem);
@@ -62,6 +64,7 @@ public:
 	SDL_Texture* WoWLogo = nullptr;
 	_TTF_Font* firstFont = nullptr;
 	SDL_Texture* RedButton = nullptr;
+	SDL_Texture* Window = nullptr;
 
 private:
 

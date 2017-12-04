@@ -14,6 +14,9 @@ public:
 	~Element();
 
 	virtual void Draw() {}
+	//virtual void OnClick() {}
+	//virtual void OnEntry() {}
+	//virtual void OnExit() {}
 	
 public:
 

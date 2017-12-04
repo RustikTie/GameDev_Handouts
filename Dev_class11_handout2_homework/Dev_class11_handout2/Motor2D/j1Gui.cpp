@@ -12,6 +12,7 @@
 #include "Background.h"
 #include "Button.h"
 #include "TextBox.h"
+#include "Window.h"
 
 j1Gui::j1Gui() : j1Module()
 {
@@ -43,6 +44,7 @@ bool j1Gui::Start()
 	BlizzLogo = App->tex->Load("gui/Glues-BlizzardLogo.png");
 	firstFont = App->font->Load("fonts/ARIALN.ttf");
 	RedButton = App->tex->Load("gui/UI-DialogBox-Button-Down.png");
+	// coords window 16,528,457,485
 	return true;
 }
 
@@ -93,7 +95,6 @@ SDL_Texture* j1Gui::GetBackground() const
 }
 
 // class Gui ---------------------------------------------------
-
 Element* j1Gui::CreateImage(int x, int y, ElementType type, SDL_Rect rec, SDL_Texture* tex)
 {
 	Element* new_element;
@@ -128,6 +129,16 @@ Element* j1Gui::CreateButton(int x, int y, ElementType type, SDL_Rect rec, const
 {
 	Element* new_element;
 	new_element = new Button(x, y, type, rec, text, tex, font);
+
+	elements.add(new_element);
+
+	return new_element;
+}
+
+Element* j1Gui::Create_Window(int x, int y, ElementType type, SDL_Rect rec)
+{
+	Element* new_element;
+	new_element = new Window(x, y, type, rec);
 
 	elements.add(new_element);
 

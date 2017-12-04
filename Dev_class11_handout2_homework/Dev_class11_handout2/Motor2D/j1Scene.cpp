@@ -48,7 +48,7 @@ bool j1Scene::Start()
 	App->gui->CreateImage(10, 40, ElementType::IMAGE, { 0, 0, 512, 256 }, App->gui->WoWLogo);
 	App->gui->CreateButton(30, 50, ElementType::BUTTON, { 0,0,128,32 }, "Hello World", App->gui->RedButton, App->gui->firstFont);
 //	App->gui->CreateImage(ElementType::IMAGE, { 485, 829, 328, 103 }, 350, 200);
-
+	App->gui->Create_Window(50, 50, ElementType::WINDOW, { 16, 528, 457, 485 });
 	return true;
 }
 
